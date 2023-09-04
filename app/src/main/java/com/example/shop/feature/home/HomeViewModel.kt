@@ -1,5 +1,6 @@
 package com.example.shop.feature.home
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.shoesshoppractice.services.data.dataclasses.Product
 import com.example.shoesshoppractice.services.data.repository.ProductRepository
@@ -11,12 +12,19 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import timber.log.Timber
 
 class HomeViewModel(private val productRepositoryImpl: ProductRepository) : BaseViewModel() {
-    val productLivedata = MutableLiveData<List<Product>>()
+    private val _productLivedata = MutableLiveData<List<Product>>()
+    val productLivedata: LiveData<List<Product>>
+        get() = _productLivedata
+    private val _progressBarLiveData = MutableLiveData<Boolean>()
+    val progressBarLiveData: LiveData<Boolean>
+        get() = _progressBarLiveData
 
     init {
+        _progressBarLiveData.value = true
         productRepositoryImpl.getProducts()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doFinally { _progressBarLiveData.value = false }
             .subscribe(object : SingleObserver<List<Product>> {
                 override fun onSubscribe(d: Disposable) {
                     compositeDisposable.add(d)
@@ -27,7 +35,7 @@ class HomeViewModel(private val productRepositoryImpl: ProductRepository) : Base
                 }
 
                 override fun onSuccess(t: List<Product>) {
-                    productLivedata.value = t
+                    _productLivedata.value = t
                 }
             })
     }

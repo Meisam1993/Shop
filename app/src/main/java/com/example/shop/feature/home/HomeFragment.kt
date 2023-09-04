@@ -25,6 +25,10 @@ class HomeFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setProgressBarIndicator(true)
+        viewModel.progressBarLiveData.observe(viewLifecycleOwner) {
+            setProgressBarIndicator(it)
+        }
         viewModel.productLivedata.observe(viewLifecycleOwner) {
             Timber.i(it.toString())
         }
