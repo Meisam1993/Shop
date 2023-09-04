@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyBottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemIconTint">@color/custom_mtrl_navigation_bar_item_tint</item>
+        <item name="itemTextColor">@color/custom_mtrl_navigation_bar_item_tint</item>
+        <item name="itemTextAppearanceActive">@style/ActiveItemBottomNavigationTextAppearance</item>
+        <item name="itemTextAppearanceInactive">@style/InActiveItemBottomNavigationTextAppearance</item>
+    </style>
+
+    <style name="ActiveItemBottomNavigationTextAppearance" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="fontFamily">@font/iranian_sans_bold</item>
+        <item name="android:fontFamily">@font/iranian_sans_bold</item>
+    </style>
+
+    <style name="InActiveItemBottomNavigationTextAppearance" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textColor">?colorOnPrimary</item>
+    </style>
+</resources>

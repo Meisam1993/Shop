@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Shop</string>
+    <string name="home">خانه</string>
+    <string name="grouping">دسته بندی</string>
+    <string name="cart">سبد خرید</string>
+    <string name="profile">پروفایل من</string>
 </resources>

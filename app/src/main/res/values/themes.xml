@@ -29,6 +29,9 @@
         <item name="textAppearanceBody2">@style/TextAppearance.MyTheme.Body2</item>
         <item name="textAppearanceSubtitle1">@style/TextAppearance.MyTheme.Subtitle1</item>
         <item name="textAppearanceCaption">@style/TextAppearance.MyTheme.Caption</item>
+
+        <!-- BottomNavigationView attrs. -->
+        <item name="bottomNavigationStyle">@style/MyBottomNavigationView</item>
     </style>
 
     <style name="Theme.Shop" parent="Base.Theme.Shop" />

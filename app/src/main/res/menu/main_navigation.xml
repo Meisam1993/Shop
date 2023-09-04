@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/home_bnv_selector"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/grouping"
+        android:icon="@drawable/grouping_bnv_selector"
+        android:title="@string/grouping" />
+    <item
+        android:id="@+id/cart"
+        android:icon="@drawable/cart_bnv_selector"
+        android:title="@string/cart" />
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/profile_bnv_selector"
+        android:title="@string/profile" />
+</menu>
