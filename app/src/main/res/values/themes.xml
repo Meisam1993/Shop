@@ -2,7 +2,33 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Shop" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/deep_orange_500</item>
+        <item name="colorPrimaryVariant">@color/deep_orange_600</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <item name="colorSecondary">@color/orange_500</item>
+        <item name="colorSecondaryVariant">@color/grey_400</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+        <item name="colorError">@color/red_500</item>
+        <item name="colorOnError">@color/white</item>
+
+        <item name="android:colorBackground">@color/white</item>
+        <item name="colorOnBackground">@color/black</item>
+
+        <item name="colorSurface">@color/orange_50</item>
+        <item name="colorOnSurface">@color/black</item>
+
+        <item name="android:statusBarColor">?colorPrimary</item>
+
+        <item name="fontFamily">@font/iranian_sans_regular</item>
+
+        <!-- Material type attrs. -->
+        <item name="textAppearanceHeadline6">@style/TextAppearance.MyTheme.Headline6</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.MyTheme.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.MyTheme.Body2</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.MyTheme.Subtitle1</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.MyTheme.Caption</item>
     </style>
 
     <style name="Theme.Shop" parent="Base.Theme.Shop" />
