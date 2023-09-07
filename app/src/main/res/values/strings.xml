@@ -4,4 +4,5 @@
     <string name="grouping">دسته بندی</string>
     <string name="cart">سبد خرید</string>
     <string name="profile">پروفایل من</string>
+    <string name="search_bar_hint">جستجو...</string>
 </resources>

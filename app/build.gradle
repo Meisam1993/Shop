@@ -63,4 +63,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     //TIMBER
     implementation 'com.jakewharton.timber:timber:5.0.1'
+    //VIEWPAGER2
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
 }
