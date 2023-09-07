@@ -1,7 +1,7 @@
 package com.example.shoesshoppractice.services.data.source.remote
 
 import com.example.shoesshoppractice.services.data.dataclasses.Product
-import com.example.shoesshoppractice.services.data.http.ApiService
+import com.example.shop.services.data.http.ApiService
 import com.example.shoesshoppractice.services.data.source.ProductDataSource
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single

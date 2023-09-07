@@ -1,13 +1,18 @@
 package com.example.shop
 
 import android.app.Application
-import com.example.shoesshoppractice.services.data.http.ApiService
-import com.example.shoesshoppractice.services.data.http.createApiServiceInstance
+import com.example.shop.services.data.http.ApiService
+import com.example.shop.services.data.http.createApiServiceInstance
 import com.example.shoesshoppractice.services.data.repository.ProductRepository
 import com.example.shoesshoppractice.services.data.repository.ProductRepositoryImpl
 import com.example.shoesshoppractice.services.data.source.local.ProductLocalDataSource
 import com.example.shoesshoppractice.services.data.source.remote.ProductRemoteDataSource
 import com.example.shop.feature.home.HomeViewModel
+import com.example.shop.services.data.repository.BannerRepository
+import com.example.shop.services.data.repository.BannerRepositoryImpl
+import com.example.shop.services.data.source.remote.BannerRemoteDataSource
+import com.example.shop.services.service.GlideImageLoadingServiceImpl
+import com.example.shop.services.service.ImageLoadingService
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
@@ -22,8 +27,15 @@ class App : Application() {
 
         val myModules = module {
             single<ApiService> { createApiServiceInstance() }
-            factory<ProductRepository> { ProductRepositoryImpl(ProductRemoteDataSource(get()), ProductLocalDataSource()) }
-            viewModel { HomeViewModel(get()) }
+            single<ImageLoadingService> { GlideImageLoadingServiceImpl() }
+            factory<ProductRepository> {
+                ProductRepositoryImpl(
+                    ProductRemoteDataSource(get()),
+                    ProductLocalDataSource()
+                )
+            }
+            factory<BannerRepository> { BannerRepositoryImpl(BannerRemoteDataSource(get())) }
+            viewModel { HomeViewModel(get(), get()) }
         }
 
         startKoin {

@@ -1,11 +1,11 @@
-package com.example.shoesshoppractice.services.data.http
+package com.example.shop.services.data.http
 
 import com.example.shoesshoppractice.services.data.dataclasses.Product
+import com.example.shop.services.data.dataclasses.Banner
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import io.reactivex.rxjava3.core.Single
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import retrofit2.http.GET
 
 const val BASE_URL = "http://expertdevelopers.ir/api/v1/"
@@ -14,6 +14,9 @@ interface ApiService {
 
     @GET("product/list")
     fun getProducts(): Single<List<Product>>
+
+    @GET("banner/slider")
+    fun getBanners(): Single<List<Banner>>
 }
 
 fun createApiServiceInstance(): ApiService {
