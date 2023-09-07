@@ -23,6 +23,8 @@
 
         <item name="fontFamily">@font/iranian_sans_regular</item>
 
+        <item name="dividerColor">@color/grey_300</item>
+
         <!-- Material type attrs. -->
         <item name="textAppearanceHeadline6">@style/TextAppearance.MyTheme.Headline6</item>
         <item name="textAppearanceBody1">@style/TextAppearance.MyTheme.Body1</item>

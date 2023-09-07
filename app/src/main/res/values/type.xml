@@ -18,7 +18,7 @@
 
     <style name="TextAppearance.MyTheme.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="android:textColor">?colorSecondary</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">12sp</item>
 
     </style>
 

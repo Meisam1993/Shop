@@ -5,4 +5,10 @@
     <string name="cart">سبد خرید</string>
     <string name="profile">پروفایل من</string>
     <string name="search_bar_hint">جستجو...</string>
+    <string name="viewAll">مشاهده همه</string>
+    <string name="latest">جدیدترین ها</string>
+    <string name="product_title">عنوان کالا</string>
+    <string name="product_pre_price">بهای پیشین کالا</string>
+    <string name="product_current_price">بهای فعلی کالا</string>
+    <string name="product_discount">تخفیف</string>
 </resources>
