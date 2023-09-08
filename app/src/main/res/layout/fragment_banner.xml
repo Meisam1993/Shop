@@ -4,6 +4,6 @@
     android:id="@+id/banner"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature.home.BannerFragment">
+    tools:context=".feature.home.banner.BannerFragment">
 
 </ImageView>

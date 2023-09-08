@@ -1,0 +1,45 @@
+package com.example.shop.feature.home.product
+
+import android.content.Context
+import android.graphics.Paint
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.example.shop.base.formatPrice
+import com.example.shop.services.data.dataclasses.Product
+import com.example.shop.databinding.ItemProductBinding
+import com.example.shop.services.service.ImageLoadingService
+
+class ProductListAdapter(
+    private val context: Context,
+    private val imageLoadingService: ImageLoadingService
+) : RecyclerView.Adapter<ProductListAdapter.ProductViewHolder>() {
+    var products = ArrayList<Product>()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
+    inner class ProductViewHolder(private val binding: ItemProductBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bindProduct(product: Product) {
+            imageLoadingService.loadImage(context, product.image, binding.image)
+            binding.title.text = product.title
+            binding.previousPrice.text = formatPrice(product.previous_price)
+            binding.previousPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+            binding.currentPrice.text = formatPrice(product.price)
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
+        val binding = ItemProductBinding
+            .inflate(LayoutInflater.from(parent.context), parent, false)
+        return ProductViewHolder(binding)
+    }
+
+    override fun getItemCount(): Int = products.size
+
+    override fun onBindViewHolder(holder: ProductViewHolder, position: Int) =
+        holder.bindProduct(products[position])
+}

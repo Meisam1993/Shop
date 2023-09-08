@@ -1,4 +1,4 @@
-package com.example.shop.feature.home
+package com.example.shop.feature.home.banner
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter

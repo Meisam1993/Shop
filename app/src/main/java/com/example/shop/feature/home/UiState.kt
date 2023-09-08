@@ -1,6 +1,6 @@
 package com.example.shop.feature.home
 
-import com.example.shoesshoppractice.services.data.dataclasses.Product
+import com.example.shop.services.data.dataclasses.Product
 import com.example.shop.services.data.dataclasses.Banner
 
 data class UiState(

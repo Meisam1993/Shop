@@ -1,12 +1,10 @@
-package com.example.shop.feature.home
+package com.example.shop.feature.home.banner
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.StringRes
-import com.example.shop.R
 import com.example.shop.base.EXTRA_KEY
 import com.example.shop.databinding.FragmentBannerBinding
 import com.example.shop.services.data.dataclasses.Banner

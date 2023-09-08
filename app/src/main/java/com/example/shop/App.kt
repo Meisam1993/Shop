@@ -3,11 +3,12 @@ package com.example.shop
 import android.app.Application
 import com.example.shop.services.data.http.ApiService
 import com.example.shop.services.data.http.createApiServiceInstance
-import com.example.shoesshoppractice.services.data.repository.ProductRepository
-import com.example.shoesshoppractice.services.data.repository.ProductRepositoryImpl
-import com.example.shoesshoppractice.services.data.source.local.ProductLocalDataSource
-import com.example.shoesshoppractice.services.data.source.remote.ProductRemoteDataSource
+import com.example.shop.services.data.repository.ProductRepository
+import com.example.shop.services.data.repository.ProductRepositoryImpl
+import com.example.shop.services.data.source.local.ProductLocalDataSource
+import com.example.shop.services.data.source.remote.ProductRemoteDataSource
 import com.example.shop.feature.home.HomeViewModel
+import com.example.shop.feature.home.product.ProductListAdapter
 import com.example.shop.services.data.repository.BannerRepository
 import com.example.shop.services.data.repository.BannerRepositoryImpl
 import com.example.shop.services.data.source.remote.BannerRemoteDataSource
@@ -34,6 +35,7 @@ class App : Application() {
                     ProductLocalDataSource()
                 )
             }
+            factory { ProductListAdapter(get(), get()) }
             factory<BannerRepository> { BannerRepositoryImpl(BannerRemoteDataSource(get())) }
             viewModel { HomeViewModel(get(), get()) }
         }
