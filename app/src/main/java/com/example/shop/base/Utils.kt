@@ -28,3 +28,8 @@ fun formatPrice(price: Number, unitRelativeSizeFactory: Float = 0.7f): Spannable
     )
     return spannableString
 }
+
+fun formatDiscount(currentPrice: Int, previousPrice: Int): String {
+    val discount = 100 - (currentPrice * 100) / previousPrice
+    return "$discount%"
+}

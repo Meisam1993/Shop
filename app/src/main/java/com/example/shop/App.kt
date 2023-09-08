@@ -1,6 +1,7 @@
 package com.example.shop
 
 import android.app.Application
+import com.example.shop.feature.detail.product.DetailViewModel
 import com.example.shop.services.data.http.ApiService
 import com.example.shop.services.data.http.createApiServiceInstance
 import com.example.shop.services.data.repository.ProductRepository
@@ -38,6 +39,7 @@ class App : Application() {
             factory { ProductListAdapter(get(), get()) }
             factory<BannerRepository> { BannerRepositoryImpl(BannerRemoteDataSource(get())) }
             viewModel { HomeViewModel(get(), get()) }
+            viewModel { DetailViewModel(get()) }
         }
 
         startKoin {

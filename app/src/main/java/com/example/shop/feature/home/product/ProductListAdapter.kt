@@ -19,6 +19,7 @@ class ProductListAdapter(
             field = value
             notifyDataSetChanged()
         }
+    var listener: OnProductItemClickListener? = null
 
     inner class ProductViewHolder(private val binding: ItemProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -29,6 +30,9 @@ class ProductListAdapter(
             binding.previousPrice.text = formatPrice(product.previous_price)
             binding.previousPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             binding.currentPrice.text = formatPrice(product.price)
+            itemView.setOnClickListener {
+                listener?.onProductClick(product)
+            }
         }
     }
 
@@ -42,4 +46,9 @@ class ProductListAdapter(
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) =
         holder.bindProduct(products[position])
+}
+
+interface OnProductItemClickListener {
+
+    fun onProductClick(product: Product)
 }

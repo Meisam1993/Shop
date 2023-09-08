@@ -1,5 +1,6 @@
 package com.example.shop.feature.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,8 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shop.services.data.dataclasses.Product
 import com.example.shop.base.BaseFragment
+import com.example.shop.base.EXTRA_KEY
 import com.example.shop.databinding.FragmentHomeBinding
+import com.example.shop.feature.detail.product.DetailActivity
 import com.example.shop.feature.home.banner.BannerAdapter
+import com.example.shop.feature.home.product.OnProductItemClickListener
 import com.example.shop.feature.home.product.ProductListAdapter
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
@@ -19,7 +23,7 @@ import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeFragment : BaseFragment() {
+class HomeFragment : BaseFragment(), OnProductItemClickListener {
     private val viewModel: HomeViewModel by viewModel()
     private val latestAdapter: ProductListAdapter by inject()
     private val popularAdapter: ProductListAdapter by inject()
@@ -39,6 +43,8 @@ class HomeFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         initLatestAdapter()
         initPopularAdapter()
+        latestAdapter.listener = this
+        popularAdapter.listener = this
 
         lifecycleScope.launch {
             viewModel.uiState.onEach {
@@ -86,5 +92,11 @@ class HomeFragment : BaseFragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun onProductClick(product: Product) {
+        startActivity(Intent(requireContext(), DetailActivity::class.java).apply {
+            putExtra(EXTRA_KEY, product)
+        })
     }
 }
