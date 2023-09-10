@@ -33,7 +33,7 @@ class DetailActivity : BaseActivity() {
     }
 
     private fun initViews() {
-        binding.back.setOnClickListener {
+        binding.detailToolbar.backBtn.setOnClickListener {
             finish()
         }
         binding.commentRv.layoutManager =

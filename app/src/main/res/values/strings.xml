@@ -19,5 +19,6 @@
     <string name="comment_date">تاریخ دیدگاه</string>
     <string name="comment_author">نویسنده دیدگاه</string>
     <string name="comment_content">متن دیدگاه</string>
+    <string name="base_toolbar">عنوان پایه</string>
 
 </resources>
