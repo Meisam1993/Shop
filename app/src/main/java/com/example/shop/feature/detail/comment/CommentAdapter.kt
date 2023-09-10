@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.shop.databinding.ItemCommentBinding
 import com.example.shop.services.data.dataclasses.Comment
 
-class CommentAdapter : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
+class CommentAdapter(private val showAll: Boolean = false) :
+    RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
     var comments = ArrayList<Comment>()
         set(value) {
             field = value
@@ -15,7 +16,6 @@ class CommentAdapter : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() 
 
     inner class CommentViewHolder(private val binding: ItemCommentBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
         fun bindComment(comment: Comment) {
             binding.title.text = comment.title
             binding.date.text = comment.date
@@ -24,17 +24,14 @@ class CommentAdapter : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() 
         }
     }
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): CommentAdapter.CommentViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
         val binding = ItemCommentBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
         return CommentViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
-        return if (comments.size > 3) 3 else comments.size
+        return if (comments.size > 3 && !showAll) 3 else comments.size
     }
 
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {

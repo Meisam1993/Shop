@@ -1,6 +1,7 @@
 package com.example.shop
 
 import android.app.Application
+import com.example.shop.feature.comment.CommentListViewModel
 import com.example.shop.feature.detail.product.DetailViewModel
 import com.example.shop.services.data.http.ApiService
 import com.example.shop.services.data.http.createApiServiceInstance
@@ -44,6 +45,7 @@ class App : Application() {
             factory<CommentRepository> { CommentRepositoryImpl(CommentRemoteDataSource(get())) }
             viewModel { HomeViewModel(get(), get()) }
             viewModel { DetailViewModel(get(), get()) }
+            viewModel { CommentListViewModel(get(), get()) }
         }
 
         startKoin {
