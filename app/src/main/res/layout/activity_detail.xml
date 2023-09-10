@@ -73,13 +73,13 @@
             <TextView
                 android:id="@+id/title"
                 android:layout_width="0dp"
-                app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:minLines="2"
                 android:textAppearance="?textAppearanceBody1"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/image"
                 tools:text="@string/product_title" />
@@ -140,6 +140,48 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="@id/previousPrice"
                 tools:text="@string/product_discount" />
+
+            <View
+                android:id="@+id/view4"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="24dp"
+                android:background="?dividerColor"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/currentPrice" />
+
+            <TextView
+                android:id="@+id/textview4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="12dp"
+                android:padding="10dp"
+                android:text="@string/user_comments"
+                android:textAppearance="?textAppearanceSubtitle1"
+                android:textColor="?colorSecondaryVariant"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view4" />
+
+            <TextView
+                android:id="@+id/insertComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:padding="10dp"
+                android:text="@string/insert_comment"
+                android:textAppearance="@style/TextAppearance.MyTheme.Subtitle1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view4" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/commentRv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/insertComment" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
