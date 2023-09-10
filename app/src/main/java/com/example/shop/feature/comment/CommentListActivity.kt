@@ -24,7 +24,7 @@ class CommentListActivity : BaseActivity() {
     }
 
     private fun initViews() {
-        binding.back.setOnClickListener {
+        binding.commentListToolbar.backBtn.setOnClickListener {
             finish()
         }
         binding.commentListRv.layoutManager =
