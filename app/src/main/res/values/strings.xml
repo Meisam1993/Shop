@@ -14,10 +14,13 @@
     <string name="detail_toolbar">جزییات کالا</string>
     <string name="detail_content">کتونی درجه ۲ ویتنامی است.این کالا برای رقابت با کتونیهای اورجینال حرف های خوبی برای اراعه دارد و از نظر دوام و مقاومت در برابر ساییدگی و ضربه با نمونه اورجینال خود قابل رقابت است. برای کسب اطلاعات بیشتر از این کالا و همچنین کالا های مشابه از این برند میتوانید وارد سایت نایک شوید</string>
     <string name="user_comments">دیدگاه کاربران</string>
+    <string name="detail_all_comments">مشاهده تمامی دیدگاه ها</string>
     <string name="insert_comment">درج دیدگاه</string>
     <string name="comment_title">عنوان دیدگاه</string>
     <string name="comment_date">تاریخ دیدگاه</string>
     <string name="comment_author">نویسنده دیدگاه</string>
     <string name="comment_content">متن دیدگاه</string>
+    <string name="comment_list_toolbar">لیست دیدگاه ها</string>
+    <string name="comment_list_btn">درج دیدگاه</string>
 
 </resources>
