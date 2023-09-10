@@ -2,6 +2,7 @@ package com.example.shop.services.data.http
 
 import com.example.shop.services.data.dataclasses.Product
 import com.example.shop.services.data.dataclasses.Banner
+import com.example.shop.services.data.dataclasses.Comment
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import io.reactivex.rxjava3.core.Single
 import retrofit2.Retrofit
@@ -18,6 +19,9 @@ interface ApiService {
 
     @GET("banner/slider")
     fun getBanners(): Single<List<Banner>>
+
+    @GET("comment/list")
+    fun getComments(@Query("product_id") productId: Int): Single<List<Comment>>
 }
 
 fun createApiServiceInstance(): ApiService {
