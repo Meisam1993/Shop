@@ -28,6 +28,12 @@
     <string name="sort_latest">جدیدترین ها</string>
     <string name="sort_popular">پربازدید ترین ها</string>
     <string name="sort_price_desc">قیمت از بالا به پایین</string>
-    <string name="sort_price_asc">قیمت از پایین به یالا</string>
+    <string name="sort_price_asc">قیمت از پایین به fالا</string>
+    <string-array name="sortTitlesArray">
+        <item>@string/sort_latest</item>
+        <item>@string/sort_popular</item>
+        <item>@string/sort_price_desc</item>
+        <item>@string/sort_price_asc</item>
+    </string-array>
 
 </resources>

@@ -11,6 +11,7 @@ import com.example.shop.services.data.source.local.ProductLocalDataSource
 import com.example.shop.services.data.source.remote.ProductRemoteDataSource
 import com.example.shop.feature.home.HomeViewModel
 import com.example.shop.feature.common.ProductListAdapter
+import com.example.shop.feature.list.ListViewModel
 import com.example.shop.services.data.repository.BannerRepository
 import com.example.shop.services.data.repository.BannerRepositoryImpl
 import com.example.shop.services.data.repository.CommentRepository
@@ -40,12 +41,13 @@ class App : Application() {
                     ProductLocalDataSource()
                 )
             }
-            factory { ProductListAdapter(get(), get()) }
+            factory { (viewType: Int) -> ProductListAdapter(viewType, get(), get()) }
             factory<BannerRepository> { BannerRepositoryImpl(BannerRemoteDataSource(get())) }
             factory<CommentRepository> { CommentRepositoryImpl(CommentRemoteDataSource(get())) }
             viewModel { HomeViewModel(get(), get()) }
             viewModel { DetailViewModel(get(), get()) }
             viewModel { CommentListViewModel(get(), get()) }
+            viewModel { (sort: Int) -> ListViewModel(sort, get()) }
         }
 
         startKoin {
