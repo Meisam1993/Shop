@@ -15,8 +15,9 @@ import com.example.shop.base.EXTRA_KEY
 import com.example.shop.databinding.FragmentHomeBinding
 import com.example.shop.feature.detail.product.DetailActivity
 import com.example.shop.feature.home.banner.BannerAdapter
-import com.example.shop.feature.home.product.OnProductItemClickListener
-import com.example.shop.feature.home.product.ProductListAdapter
+import com.example.shop.feature.common.OnProductItemClickListener
+import com.example.shop.feature.common.ProductListAdapter
+import com.example.shop.feature.list.ListActivity
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch

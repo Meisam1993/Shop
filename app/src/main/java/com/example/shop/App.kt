@@ -10,7 +10,7 @@ import com.example.shop.services.data.repository.ProductRepositoryImpl
 import com.example.shop.services.data.source.local.ProductLocalDataSource
 import com.example.shop.services.data.source.remote.ProductRemoteDataSource
 import com.example.shop.feature.home.HomeViewModel
-import com.example.shop.feature.home.product.ProductListAdapter
+import com.example.shop.feature.common.ProductListAdapter
 import com.example.shop.services.data.repository.BannerRepository
 import com.example.shop.services.data.repository.BannerRepositoryImpl
 import com.example.shop.services.data.repository.CommentRepository

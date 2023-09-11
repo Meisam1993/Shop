@@ -1,4 +1,4 @@
-package com.example.shop.feature.home.product
+package com.example.shop.feature.common
 
 import android.content.Context
 import android.graphics.Paint
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shop.base.formatPrice
 import com.example.shop.services.data.dataclasses.Product
-import com.example.shop.databinding.ItemProductBinding
+import com.example.shop.databinding.ItemProductSmallBinding
 import com.example.shop.services.service.ImageLoadingService
 
 class ProductListAdapter(
@@ -21,7 +21,7 @@ class ProductListAdapter(
         }
     var listener: OnProductItemClickListener? = null
 
-    inner class ProductViewHolder(private val binding: ItemProductBinding) :
+    inner class ProductViewHolder(private val binding: ItemProductSmallBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bindProduct(product: Product) {
@@ -37,7 +37,7 @@ class ProductListAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-        val binding = ItemProductBinding
+        val binding = ItemProductSmallBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
         return ProductViewHolder(binding)
     }
