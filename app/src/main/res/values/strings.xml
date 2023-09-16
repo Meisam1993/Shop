@@ -20,4 +20,5 @@
     <string name="comment_author">نویسنده دیدگاه</string>
     <string name="comment_content">متن دیدگاه</string>
     <string name="add_to_cart">افزودن به سبد خرید</string>
+    <string name="add_to_cart_Message">کالا با موفقیت به سبد خرید اضافه شد</string>
 </resources>
