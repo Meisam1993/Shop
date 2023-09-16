@@ -5,6 +5,7 @@ import androidx.lifecycle.SavedStateHandle
 import com.example.shop.base.BaseSingleObserver
 import com.example.shop.base.BaseViewModel
 import com.example.shop.base.EXTRA_KEY
+import com.example.shop.base.asyncNetworkRequest
 import com.example.shop.services.data.dataclasses.Comment
 import com.example.shop.services.data.dataclasses.Product
 import com.example.shop.services.data.repository.CommentRepository
@@ -29,8 +30,7 @@ class CommentListViewModel(
         progressBarLiveData.value = true
         productLivedata.value?.let {
             commentRepositoryImpl.getComments(it.id)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .asyncNetworkRequest()
                 .doFinally { progressBarLiveData.value = false }
                 .subscribe(object : BaseSingleObserver<List<Comment>>(compositeDisposable) {
                     override fun onSuccess(t: List<Comment>) {

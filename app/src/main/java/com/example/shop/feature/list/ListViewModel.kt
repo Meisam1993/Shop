@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.shop.R
 import com.example.shop.base.BaseSingleObserver
 import com.example.shop.base.BaseViewModel
+import com.example.shop.base.asyncNetworkRequest
 import com.example.shop.services.data.dataclasses.Product
 import com.example.shop.services.data.repository.ProductRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -30,8 +31,7 @@ class ListViewModel(var sort: Int, private val productRepositoryImpl: ProductRep
     private fun getProducts() {
         progressBarLiveData.value = true
         productRepositoryImpl.getProducts(sort)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .asyncNetworkRequest()
             .doFinally { progressBarLiveData.value = false }
             .subscribe(object : BaseSingleObserver<List<Product>>(compositeDisposable) {
                 override fun onSuccess(t: List<Product>) {

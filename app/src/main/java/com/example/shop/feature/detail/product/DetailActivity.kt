@@ -18,7 +18,6 @@ import com.example.shop.feature.comment.CommentListActivity
 import com.example.shop.feature.detail.comment.CommentAdapter
 import com.example.shop.services.data.dataclasses.Comment
 import com.example.shop.services.service.ImageLoadingService
-import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers

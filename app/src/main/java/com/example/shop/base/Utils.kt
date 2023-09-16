@@ -5,6 +5,9 @@ import android.content.res.Resources
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
 import android.util.DisplayMetrics
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 fun convertDpToPixel(dp: Float, context: Context?): Float {
     return if (context != null) {
@@ -32,4 +35,9 @@ fun formatPrice(price: Number, unitRelativeSizeFactory: Float = 0.7f): Spannable
 fun formatDiscount(currentPrice: Int, previousPrice: Int): String {
     val discount = 100 - (currentPrice * 100) / previousPrice
     return "$discount%"
+}
+
+fun <T : Any> Single<T>.asyncNetworkRequest() : Single<T> {
+    return subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
 }
