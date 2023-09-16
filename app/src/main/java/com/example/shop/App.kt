@@ -14,9 +14,12 @@ import com.example.shop.feature.common.ProductListAdapter
 import com.example.shop.feature.list.ListViewModel
 import com.example.shop.services.data.repository.BannerRepository
 import com.example.shop.services.data.repository.BannerRepositoryImpl
+import com.example.shop.services.data.repository.CartRepository
+import com.example.shop.services.data.repository.CartRepositoryImpl
 import com.example.shop.services.data.repository.CommentRepository
 import com.example.shop.services.data.repository.CommentRepositoryImpl
 import com.example.shop.services.data.source.remote.BannerRemoteDataSource
+import com.example.shop.services.data.source.remote.CartRemoteDataSource
 import com.example.shop.services.data.source.remote.CommentRemoteDataSource
 import com.example.shop.services.service.GlideImageLoadingServiceImpl
 import com.example.shop.services.service.ImageLoadingService
@@ -44,10 +47,12 @@ class App : Application() {
             factory { (viewType: Int) -> ProductListAdapter(viewType, get(), get()) }
             factory<BannerRepository> { BannerRepositoryImpl(BannerRemoteDataSource(get())) }
             factory<CommentRepository> { CommentRepositoryImpl(CommentRemoteDataSource(get())) }
+            factory<CartRepository> { CartRepositoryImpl(CartRemoteDataSource(get())) }
             viewModel { HomeViewModel(get(), get()) }
             viewModel { DetailViewModel(get(), get()) }
             viewModel { CommentListViewModel(get(), get()) }
             viewModel { (sort: Int) -> ListViewModel(sort, get()) }
+            viewModel { DetailViewModel(get(), get(), get()) }
         }
 
         startKoin {

@@ -7,15 +7,19 @@ import com.example.shop.base.BaseViewModel
 import com.example.shop.base.EXTRA_KEY
 import com.example.shop.services.data.dataclasses.Comment
 import com.example.shop.services.data.dataclasses.Product
-
+import com.example.shop.services.data.dataclasses.cart.AddToCartResponse
+import com.example.shop.services.data.repository.CartRepository
 import com.example.shop.services.data.repository.CommentRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import timber.log.Timber
 
 class DetailViewModel(
     private val state: SavedStateHandle,
-    private val commentRepositoryImpl: CommentRepository
+    private val commentRepositoryImpl: CommentRepository,
+    private val cartRepositoryImpl: CartRepository
 ) : BaseViewModel() {
     val productLivedata: MutableLiveData<Product> =
         state.getLiveData<Product>(EXTRA_KEY)
@@ -42,5 +46,9 @@ class DetailViewModel(
                 }
 
             })
+    }
+
+    fun onAddToCartBtnClick(): Completable {
+        return cartRepositoryImpl.addToCart(productLivedata.value!!.id).ignoreElement()
     }
 }
