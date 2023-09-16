@@ -72,4 +72,6 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
     //DOTS-INDICATOR
     implementation 'com.tbuonomo:dotsindicator:4.3'
+    //EVENTBUS
+    implementation 'org.greenrobot:eventbus:3.3.1'
 }

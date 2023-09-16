@@ -49,7 +49,7 @@ class App : Application() {
             factory<CommentRepository> { CommentRepositoryImpl(CommentRemoteDataSource(get())) }
             factory<CartRepository> { CartRepositoryImpl(CartRemoteDataSource(get())) }
             viewModel { HomeViewModel(get(), get()) }
-            viewModel { DetailViewModel(get(), get()) }
+            viewModel { DetailViewModel(get(), get(), get()) }
             viewModel { CommentListViewModel(get(), get()) }
             viewModel { (sort: Int) -> ListViewModel(sort, get()) }
             viewModel { DetailViewModel(get(), get(), get()) }

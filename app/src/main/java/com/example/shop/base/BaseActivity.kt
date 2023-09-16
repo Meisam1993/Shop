@@ -1,11 +1,13 @@
 package com.example.shop.base
 
 import android.content.Context
+import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.children
-import com.example.shop.R
+import org.greenrobot.eventbus.EventBus
 import java.lang.IllegalStateException
 
 abstract class BaseActivity : AppCompatActivity(), BaseView {
@@ -26,4 +28,14 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     override val viewContext: Context?
         get() = this
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onDestroy() {
+        EventBus.getDefault().unregister(this)
+        super.onDestroy()
+    }
 }

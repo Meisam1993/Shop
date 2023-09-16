@@ -38,4 +38,5 @@
 
     <string name="add_to_cart">افزودن به سبد خرید</string>
     <string name="add_to_cart_Message">کالا با موفقیت به سبد خرید اضافه شد</string>
+    <string name="unknown_error">خطای نامشخص</string>
 </resources>

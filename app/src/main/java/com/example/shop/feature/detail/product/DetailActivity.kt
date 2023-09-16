@@ -2,9 +2,7 @@ package com.example.shop.feature.detail.product
 
 import android.content.Intent
 import android.graphics.Paint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -55,11 +53,7 @@ class DetailActivity : BaseActivity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : BaseCompletableObserver(compositeDisposable) {
                     override fun onComplete() {
-                        Snackbar.make(
-                            rootView as CoordinatorLayout,
-                            getString(R.string.add_to_cart_Message),
-                            Snackbar.LENGTH_SHORT
-                        ).show()
+                        showSnackBar(getString(R.string.add_to_cart_Message))
                     }
                 })
         }

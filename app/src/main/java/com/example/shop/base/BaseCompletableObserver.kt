@@ -3,6 +3,7 @@ package com.example.shop.base
 import io.reactivex.rxjava3.core.CompletableObserver
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
+import org.greenrobot.eventbus.EventBus
 import timber.log.Timber
 
 abstract class BaseCompletableObserver(private val compositeDisposable: CompositeDisposable) :
@@ -13,6 +14,6 @@ abstract class BaseCompletableObserver(private val compositeDisposable: Composit
     }
 
     override fun onError(e: Throwable) {
-        Timber.e(e)
+        EventBus.getDefault().post(BaseExceptionMapper.map(e))
     }
 }

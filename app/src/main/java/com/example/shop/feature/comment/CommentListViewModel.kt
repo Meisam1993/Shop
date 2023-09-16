@@ -36,10 +36,6 @@ class CommentListViewModel(
                     override fun onSuccess(t: List<Comment>) {
                         commentsLiveData.value = t
                     }
-
-                    override fun onError(e: Throwable) {
-                        Timber.e(e)
-                    }
                 })
         }
     }

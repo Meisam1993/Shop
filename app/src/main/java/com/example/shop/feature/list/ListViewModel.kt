@@ -37,11 +37,6 @@ class ListViewModel(var sort: Int, private val productRepositoryImpl: ProductRep
                 override fun onSuccess(t: List<Product>) {
                     productsLiveData.value = t
                 }
-
-                override fun onError(e: Throwable) {
-                    Timber.e(e)
-                }
-
             })
     }
 
