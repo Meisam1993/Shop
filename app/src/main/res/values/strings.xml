@@ -35,8 +35,17 @@
         <item>@string/sort_price_desc</item>
         <item>@string/sort_price_asc</item>
     </string-array>
-
     <string name="add_to_cart">افزودن به سبد خرید</string>
     <string name="add_to_cart_Message">کالا با موفقیت به سبد خرید اضافه شد</string>
     <string name="unknown_error">خطای نامشخص</string>
+    <string name="go_to_sign_up">ثبت نام</string>
+    <string name="no_sign_up">تا به حال ثبت نام نکرده اید؟</string>
+    <string name="login">ورود</string>
+    <string name="email">ایمیل</string>
+    <string name="password">گذرواژه</string>
+    <string name="login_title">صفحه ورود به حساب کاربری</string>
+    <string name="go_to_login">ورود</string>
+    <string name="sign_up_before">پیش تر ثبت نام کرده اید؟</string>
+    <string name="sign_up_title1">به فروشگاه اینترنتی خوش آمدید</string>
+    <string name="sign_up_title2">لطفا ثبت نام فرمایید</string>
 </resources>
