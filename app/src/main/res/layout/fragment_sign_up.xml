@@ -12,7 +12,7 @@
         android:background="?colorPrimary">
 
         <TextView
-            android:id="@+id/goToSignUp"
+            android:id="@+id/pageChanger"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
@@ -30,7 +30,7 @@
             android:layout_marginBottom="12dp"
             android:text="@string/sign_up_before"
             android:textAppearance="?textAppearanceSubtitle1"
-            app:layout_constraintBottom_toTopOf="@id/goToSignUp"
+            app:layout_constraintBottom_toTopOf="@id/pageChanger"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 

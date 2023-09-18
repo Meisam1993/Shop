@@ -1,6 +1,8 @@
 package com.example.shop
 
 import android.app.Application
+import android.content.SharedPreferences
+import com.example.shop.feature.auth.AuthViewModel
 import com.example.shop.feature.comment.CommentListViewModel
 import com.example.shop.feature.detail.product.DetailViewModel
 import com.example.shop.services.data.http.ApiService
@@ -18,11 +20,18 @@ import com.example.shop.services.data.repository.CartRepository
 import com.example.shop.services.data.repository.CartRepositoryImpl
 import com.example.shop.services.data.repository.CommentRepository
 import com.example.shop.services.data.repository.CommentRepositoryImpl
+import com.example.shop.services.data.repository.UserRepository
+import com.example.shop.services.data.repository.UserRepositoryImpl
+import com.example.shop.services.data.source.UserDataSource
+import com.example.shop.services.data.source.local.UserLocalDataSource
 import com.example.shop.services.data.source.remote.BannerRemoteDataSource
 import com.example.shop.services.data.source.remote.CartRemoteDataSource
 import com.example.shop.services.data.source.remote.CommentRemoteDataSource
+import com.example.shop.services.data.source.remote.UserRemoteDataSource
 import com.example.shop.services.service.GlideImageLoadingServiceImpl
 import com.example.shop.services.service.ImageLoadingService
+import io.reactivex.rxjava3.core.Single
+import org.koin.android.ext.android.get
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
@@ -36,8 +45,19 @@ class App : Application() {
         Timber.plant(Timber.DebugTree())
 
         val myModules = module {
-            single<ApiService> { createApiServiceInstance() }
+            single<SharedPreferences> {
+                this@App.getSharedPreferences(
+                    "app_settings",
+                    MODE_PRIVATE
+                )
+            }
+            single<UserDataSource> { UserLocalDataSource(get()) }
+            single<ApiService> { createApiServiceInstance(get()) }
             single<ImageLoadingService> { GlideImageLoadingServiceImpl() }
+
+            single<UserRepository> {
+                UserRepositoryImpl(UserRemoteDataSource(get()), get())
+            }
             factory<ProductRepository> {
                 ProductRepositoryImpl(
                     ProductRemoteDataSource(get()),
@@ -53,11 +73,16 @@ class App : Application() {
             viewModel { CommentListViewModel(get(), get()) }
             viewModel { (sort: Int) -> ListViewModel(sort, get()) }
             viewModel { DetailViewModel(get(), get(), get()) }
+            viewModel { AuthViewModel(get()) }
         }
 
         startKoin {
             androidContext(this@App)
             modules(myModules)
         }
+
+        //to Save token from sharedPreference in memory
+        val userRepository: UserRepository = get()
+        userRepository.loadToken()
     }
 }
