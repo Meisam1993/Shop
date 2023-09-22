@@ -1,9 +1,11 @@
 package com.example.shop.feature.cart
 
 import androidx.lifecycle.MutableLiveData
+import com.example.shop.R
 import com.example.shop.base.BaseSingleObserver
 import com.example.shop.base.BaseViewModel
 import com.example.shop.base.asyncNetworkRequest
+import com.example.shop.services.data.dataclasses.EmptyState
 import com.example.shop.services.data.dataclasses.cart.CartItem
 import com.example.shop.services.data.dataclasses.cart.CartItemCount
 import com.example.shop.services.data.dataclasses.cart.CartListResponse
@@ -19,10 +21,12 @@ class CartViewModel(
     val cartItemsListLiveData = MutableLiveData<List<CartItem>>()
     val purchaseDetailsLiveData = MutableLiveData<PurchaseDetails>()
     val progressBarLiveData = MutableLiveData<Boolean>()
+    val emptyStateLiveData = MutableLiveData<EmptyState>()
 
     private fun getCartResponse() {
         if (!userLocalDataSource.loadTokenContainer().token.isNullOrEmpty()) {
             progressBarLiveData.value = true
+            emptyStateLiveData.value = EmptyState(false)
             cartRepositoryImpl.getCartsList()
                 .asyncNetworkRequest()
                 .doFinally { progressBarLiveData.value = false }
@@ -32,20 +36,32 @@ class CartViewModel(
                             cartItemsListLiveData.value = t.cart_items
                             purchaseDetailsLiveData.value =
                                 PurchaseDetails(t.total_price, t.shipping_cost, t.payable_price)
+                        } else {
+                            emptyStateLiveData.value = EmptyState(true, R.string.cart_empty_state)
                         }
                     }
 
                 })
+        } else {
+            emptyStateLiveData.value = EmptyState(
+                true,
+                R.string.cart_empty_state_login,
+                true,
+                R.string.cart_empty_state_call_to_action_login
+            )
         }
-    }
-
-    fun getCartItemsCount() {
-
     }
 
     fun removeCartItem(cartItem: CartItem): Completable {
         return cartRepositoryImpl.removeCartItem(cartItem.cart_item_id)
-            .doAfterSuccess { calculateAndPublishPurchaseDetails() }
+            .doAfterSuccess {
+                calculateAndPublishPurchaseDetails()
+                cartItemsListLiveData.value?.let {
+                    if (it.isEmpty()) {
+                        emptyStateLiveData.value = EmptyState(true, R.string.cart_empty_state)
+                    }
+                }
+            }
             .ignoreElement()
     }
 

@@ -67,6 +67,10 @@ class CartFragment : BaseFragment(), CartItemAdapter.CartItemViewCallBack {
                 adapter.notifyItemChanged(adapter.cartItemList.size)
             }
         }
+
+        viewModel.emptyStateLiveData.observe(viewLifecycleOwner) {
+
+        }
     }
 
     override fun onProductImageClick(cartItem: CartItem) {

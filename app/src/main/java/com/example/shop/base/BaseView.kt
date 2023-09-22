@@ -54,4 +54,12 @@ interface BaseView {
             Snackbar.make(it, message, duration).show()
         }
     }
+
+    fun showEmptyState(layoutResId: Int): View? {
+        rootView?.let {
+            viewContext?.let {context ->
+                var emptyState = it.findViewById<View>(layoutResId)
+            }
+        }
+    }
 }
