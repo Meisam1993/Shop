@@ -3,6 +3,7 @@ package com.example.shop
 import android.app.Application
 import android.content.SharedPreferences
 import com.example.shop.feature.auth.AuthViewModel
+import com.example.shop.feature.cart.CartViewModel
 import com.example.shop.feature.comment.CommentListViewModel
 import com.example.shop.feature.detail.product.DetailViewModel
 import com.example.shop.services.data.http.ApiService
@@ -74,6 +75,7 @@ class App : Application() {
             viewModel { (sort: Int) -> ListViewModel(sort, get()) }
             viewModel { DetailViewModel(get(), get(), get()) }
             viewModel { AuthViewModel(get()) }
+            viewModel { CartViewModel(get(), get()) }
         }
 
         startKoin {

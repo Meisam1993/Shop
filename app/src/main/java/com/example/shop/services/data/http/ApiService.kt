@@ -6,6 +6,8 @@ import com.example.shop.services.data.dataclasses.Comment
 import com.example.shop.services.data.dataclasses.cart.AddToCartResponse
 import com.example.shop.services.data.dataclasses.MessageResponse
 import com.example.shop.services.data.dataclasses.TokenResponse
+import com.example.shop.services.data.dataclasses.cart.CartItemCount
+import com.example.shop.services.data.dataclasses.cart.CartListResponse
 import com.example.shop.services.data.source.UserDataSource
 import com.google.gson.JsonObject
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
@@ -35,6 +37,18 @@ interface ApiService {
 
     @POST("cart/add")
     fun addToCart(@Body jsonObject: JsonObject): Single<AddToCartResponse>
+
+    @GET("cart/list")
+    fun getCartsList(): Single<CartListResponse>
+
+    @GET("cart/count")
+    fun getCartItemsCount(): Single<CartItemCount>
+
+    @POST("cart/remove")
+    fun removeCartItem(@Body jsonObject: JsonObject): Single<MessageResponse>
+
+    @POST("cart/changeCount")
+    fun changeCartItemCount(@Body jsonObject: JsonObject): Single<AddToCartResponse>
 
     @POST("auth/token")
     fun login(@Body jsonObject: JsonObject): Single<TokenResponse>

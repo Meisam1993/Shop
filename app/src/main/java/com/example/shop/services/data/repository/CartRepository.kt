@@ -1,6 +1,7 @@
 package com.example.shop.services.data.repository
 
 import android.os.Message
+import com.example.shop.services.data.dataclasses.MessageResponse
 import com.example.shop.services.data.dataclasses.cart.AddToCartResponse
 import com.example.shop.services.data.dataclasses.cart.CartItemCount
 import com.example.shop.services.data.dataclasses.cart.CartListResponse
@@ -12,7 +13,7 @@ interface CartRepository {
 
     fun getCartsList(): Single<CartListResponse>
 
-    fun removeCartItem(cartItemId: Int): Single<Message>
+    fun removeCartItem(cartItemId: Int): Single<MessageResponse>
 
     fun changeCartItemCount(cartItemId: Int, count: Int): Single<AddToCartResponse>
 

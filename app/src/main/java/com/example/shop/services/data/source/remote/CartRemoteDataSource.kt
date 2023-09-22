@@ -1,6 +1,7 @@
 package com.example.shop.services.data.source.remote
 
 import android.os.Message
+import com.example.shop.services.data.dataclasses.MessageResponse
 import com.example.shop.services.data.dataclasses.cart.AddToCartResponse
 import com.example.shop.services.data.dataclasses.cart.CartItemCount
 import com.example.shop.services.data.dataclasses.cart.CartListResponse
@@ -17,19 +18,18 @@ class CartRemoteDataSource(private val apiService: ApiService) : CartDataSource 
             addProperty("product_id", productId)
         })
 
-    override fun getCartList(): Single<CartListResponse> {
-        TODO("Not yet implemented")
-    }
+    override fun getCartsList(): Single<CartListResponse> = apiService.getCartsList()
 
-    override fun removeCartItem(cartItemId: Int): Single<Message> {
-        TODO("Not yet implemented")
-    }
+    override fun removeCartItem(cartItemId: Int): Single<MessageResponse> =
+        apiService.removeCartItem(JsonObject().apply {
+            addProperty("cart_item_id", cartItemId)
+        })
 
-    override fun changeCartItemCount(cartItemId: Int, count: Int): Single<AddToCartResponse> {
-        TODO("Not yet implemented")
-    }
+    override fun changeCartItemCount(cartItemId: Int, count: Int): Single<AddToCartResponse> =
+        apiService.changeCartItemCount(JsonObject().apply {
+            addProperty("cart_item_id", cartItemId)
+            addProperty("count", count)
+        })
 
-    override fun getCartItemsCount(): Single<CartItemCount> {
-        TODO("Not yet implemented")
-    }
+    override fun getCartItemsCount(): Single<CartItemCount> = apiService.getCartItemsCount()
 }
