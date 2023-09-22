@@ -5,16 +5,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.shop.R
 import com.example.shop.base.BaseCompletableObserver
 import com.example.shop.base.BaseFragment
-import com.example.shop.base.BaseSingleObserver
 import com.example.shop.base.EXTRA_KEY
 import com.example.shop.databinding.FragmentCartBinding
+import com.example.shop.feature.auth.AuthActivity
 import com.example.shop.feature.detail.product.DetailActivity
 import com.example.shop.services.data.dataclasses.cart.CartItem
 import com.example.shop.services.service.ImageLoadingService
+import com.google.android.material.button.MaterialButton
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -69,8 +74,26 @@ class CartFragment : BaseFragment(), CartItemAdapter.CartItemViewCallBack {
         }
 
         viewModel.emptyStateLiveData.observe(viewLifecycleOwner) {
+            val emptyState = showEmptyState(R.layout.item_empty_state)
+            if (it.mustShow) {
+                emptyState?.let { view ->
+                    val image: ImageView = view.findViewById(R.id.esImage)
+                    val message: TextView = view.findViewById(R.id.eSMessage)
+                    val callToAction: Button = view.findViewById(R.id.callToActionBtn)
+                    message.text = getString(it.messageResId)
+                    image.setImageResource(it.image)
+                    callToAction.text = getString(it.callToActionBtnMessageResId)
+                    callToAction.visibility = if (it.mustShow) View.VISIBLE else View.GONE
+                    callToAction.setOnClickListener {
+                        startActivity(Intent(requireContext(), AuthActivity::class.java))
+                    }
 
+                }
+            } else {
+                emptyState?.visibility = View.GONE
+            }
         }
+
     }
 
     override fun onProductImageClick(cartItem: CartItem) {

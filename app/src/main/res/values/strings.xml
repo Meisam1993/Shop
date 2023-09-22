@@ -58,5 +58,6 @@
     <string name="payable_price">هزینه قابل پرداخت</string>
     <string name="cart_empty_state_login">لطفا وارد حساب کاردبری خود شوید</string>
     <string name="cart_empty_state_call_to_action_login">ورود به حساب کاربری</string>
-    <string name="cart_empty_state">اینجا هیچ خبری نیست !!!</string>
+    <string name="cart_empty_state_message">اینجا هیچ خبری نیست !!!</string>
+    <string name="comment_empty_state_message">اولین نفری باشید که دیدگاهی می نویسد !!!</string>
 </resources>

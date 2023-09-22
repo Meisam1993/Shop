@@ -7,7 +7,6 @@ import com.example.shop.base.BaseViewModel
 import com.example.shop.base.asyncNetworkRequest
 import com.example.shop.services.data.dataclasses.EmptyState
 import com.example.shop.services.data.dataclasses.cart.CartItem
-import com.example.shop.services.data.dataclasses.cart.CartItemCount
 import com.example.shop.services.data.dataclasses.cart.CartListResponse
 import com.example.shop.services.data.dataclasses.cart.PurchaseDetails
 import com.example.shop.services.data.repository.CartRepository
@@ -37,7 +36,11 @@ class CartViewModel(
                             purchaseDetailsLiveData.value =
                                 PurchaseDetails(t.total_price, t.shipping_cost, t.payable_price)
                         } else {
-                            emptyStateLiveData.value = EmptyState(true, R.string.cart_empty_state)
+                            emptyStateLiveData.value = EmptyState(
+                                true,
+                                R.drawable.cart_empty_state,
+                                R.string.cart_empty_state_message
+                            )
                         }
                     }
 
@@ -45,6 +48,7 @@ class CartViewModel(
         } else {
             emptyStateLiveData.value = EmptyState(
                 true,
+                R.drawable.login_empty_state,
                 R.string.cart_empty_state_login,
                 true,
                 R.string.cart_empty_state_call_to_action_login
@@ -58,7 +62,8 @@ class CartViewModel(
                 calculateAndPublishPurchaseDetails()
                 cartItemsListLiveData.value?.let {
                     if (it.isEmpty()) {
-                        emptyStateLiveData.value = EmptyState(true, R.string.cart_empty_state)
+                        emptyStateLiveData.value =
+                            EmptyState(true, R.string.cart_empty_state_message)
                     }
                 }
             }

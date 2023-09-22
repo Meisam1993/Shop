@@ -57,9 +57,16 @@ interface BaseView {
 
     fun showEmptyState(layoutResId: Int): View? {
         rootView?.let {
-            viewContext?.let {context ->
-                var emptyState = it.findViewById<View>(layoutResId)
+            viewContext?.let { context ->
+                var emptyState = it.findViewById<View>(R.id.emptyStateRootView)
+                if (emptyState == null) {
+                    emptyState = LayoutInflater.from(context).inflate(layoutResId, it, false)
+                    it.addView(emptyState)
+                }
+                emptyState.visibility = View.VISIBLE
+                return emptyState
             }
         }
+        return null
     }
 }

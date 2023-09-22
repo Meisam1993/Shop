@@ -4,6 +4,9 @@ import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +17,7 @@ import com.example.shop.base.BaseCompletableObserver
 import com.example.shop.base.formatDiscount
 import com.example.shop.base.formatPrice
 import com.example.shop.databinding.ActivityDetailBinding
+import com.example.shop.feature.auth.AuthActivity
 import com.example.shop.feature.comment.CommentListActivity
 import com.example.shop.feature.detail.comment.CommentAdapter
 import com.example.shop.services.data.dataclasses.Comment
@@ -82,6 +86,27 @@ class DetailActivity : BaseActivity() {
                         putExtra(EXTRA_KEY, viewModel.productLivedata.value)
                     })
                 }
+            }
+        }
+
+        viewModel.emptyStateLiveData.observe(this) {
+            val emptyState = showEmptyState(R.layout.item_empty_state)
+            if (it.mustShow) {
+                emptyState?.let { view ->
+                    val image: ImageView = view.findViewById(R.id.esImage)
+                    val message: TextView = view.findViewById(R.id.eSMessage)
+                    val callToAction: Button = view.findViewById(R.id.callToActionBtn)
+                    message.text = getString(it.messageResId)
+                    image.setImageResource(it.image)
+                    callToAction.text = getString(it.callToActionBtnMessageResId)
+                    callToAction.visibility = if (it.mustShow) View.VISIBLE else View.GONE
+                    callToAction.setOnClickListener {
+
+                    }
+
+                }
+            } else {
+                emptyState?.visibility = View.GONE
             }
         }
 
