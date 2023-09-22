@@ -52,4 +52,8 @@
     <string name="pay_btn">پرداخت</string>
     <string name="counter">۲</string>
     <string name="remove">حذف از سبد خرید</string>
+    <string name="purchase_details">جزییات خرید</string>
+    <string name="total_price">هزینه کل خرید</string>
+    <string name="shipping_cost">هزینه ارسال</string>
+    <string name="payable_price">هزینه قابل پرداخت</string>
 </resources>
