@@ -11,6 +11,7 @@ import com.example.shop.services.data.dataclasses.cart.PurchaseDetails
 import com.example.shop.services.data.repository.CartRepository
 import com.example.shop.services.data.source.UserDataSource
 import io.reactivex.rxjava3.core.Completable
+import org.greenrobot.eventbus.EventBus
 
 class CartViewModel(
     private val cartRepositoryImpl: CartRepository,
@@ -45,19 +46,40 @@ class CartViewModel(
 
     fun removeCartItem(cartItem: CartItem): Completable {
         return cartRepositoryImpl.removeCartItem(cartItem.cart_item_id)
-            .doAfterSuccess { calculateAndPublishPurchaseDetails() }
+            .doAfterSuccess {
+                calculateAndPublishPurchaseDetails()
+                val cartItemCount = EventBus.getDefault().getStickyEvent(CartItemCount::class.java)
+                cartItemCount?.let {
+                    it.count -= cartItem.count
+                    EventBus.getDefault().postSticky(it)
+                }
+            }
             .ignoreElement()
     }
 
     fun increaseCartItemCount(cartItem: CartItem): Completable {
         return cartRepositoryImpl.changeCartItemCount(cartItem.cart_item_id, ++cartItem.count)
-            .doAfterSuccess { calculateAndPublishPurchaseDetails() }
+            .doAfterSuccess {
+                calculateAndPublishPurchaseDetails()
+                val cartItemCount = EventBus.getDefault().getStickyEvent(CartItemCount::class.java)
+                cartItemCount?.let {
+                    it.count += 1
+                    EventBus.getDefault().postSticky(it)
+                }
+            }
             .ignoreElement()
     }
 
     fun decreaseCartItemCount(cartItem: CartItem): Completable {
         return cartRepositoryImpl.changeCartItemCount(cartItem.cart_item_id, --cartItem.count)
-            .doAfterSuccess { calculateAndPublishPurchaseDetails() }
+            .doAfterSuccess {
+                calculateAndPublishPurchaseDetails()
+                val cartItemCount = EventBus.getDefault().getStickyEvent(CartItemCount::class.java)
+                cartItemCount?.let {
+                    it.count -= 1
+                    EventBus.getDefault().postSticky(it)
+                }
+            }
             .ignoreElement()
     }
 

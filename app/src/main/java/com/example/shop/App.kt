@@ -15,6 +15,7 @@ import com.example.shop.services.data.source.remote.ProductRemoteDataSource
 import com.example.shop.feature.home.HomeViewModel
 import com.example.shop.feature.common.ProductListAdapter
 import com.example.shop.feature.list.ListViewModel
+import com.example.shop.feature.main.MainViewModel
 import com.example.shop.services.data.repository.BannerRepository
 import com.example.shop.services.data.repository.BannerRepositoryImpl
 import com.example.shop.services.data.repository.CartRepository
@@ -31,7 +32,6 @@ import com.example.shop.services.data.source.remote.CommentRemoteDataSource
 import com.example.shop.services.data.source.remote.UserRemoteDataSource
 import com.example.shop.services.service.GlideImageLoadingServiceImpl
 import com.example.shop.services.service.ImageLoadingService
-import io.reactivex.rxjava3.core.Single
 import org.koin.android.ext.android.get
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -76,6 +76,7 @@ class App : Application() {
             viewModel { DetailViewModel(get(), get(), get()) }
             viewModel { AuthViewModel(get()) }
             viewModel { CartViewModel(get(), get()) }
+            viewModel { MainViewModel(get(), get()) }
         }
 
         startKoin {
