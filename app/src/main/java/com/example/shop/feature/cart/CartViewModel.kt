@@ -7,6 +7,7 @@ import com.example.shop.base.BaseViewModel
 import com.example.shop.base.asyncNetworkRequest
 import com.example.shop.services.data.dataclasses.EmptyState
 import com.example.shop.services.data.dataclasses.cart.CartItem
+import com.example.shop.services.data.dataclasses.cart.CartItemCount
 import com.example.shop.services.data.dataclasses.cart.CartListResponse
 import com.example.shop.services.data.dataclasses.cart.PurchaseDetails
 import com.example.shop.services.data.repository.CartRepository
